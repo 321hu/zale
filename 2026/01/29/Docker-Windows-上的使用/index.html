@@ -20,24 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"321hu.github.io","root":"/zale/","images":"/zale/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/zale/js/config.js" defer></script>
 
-    <meta name="description" content="满堂花醉三千客，一剑霜寒十四州。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zale&#39; blog">
-<meta property="og:url" content="https://321hu.github.io/zale/archives/2026/index.html">
+    <meta name="description" content="在 Windows 上使用 Docker新手入门Docker之Windows下如何使用Docker_windows docker 使用-CSDN博客  运行已下载好的镜像：   docker images：查看所有已拉取镜像 docker run --name &lt;container_name&gt; -d &lt;image&gt;:&lt;tag&gt;：在后台运行镜像，且将此容器命名为c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker - Windows 上的使用">
+<meta property="og:url" content="https://321hu.github.io/zale/2026/01/29/Docker-Windows-%E4%B8%8A%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Zale&#39; blog">
-<meta property="og:description" content="满堂花醉三千客，一剑霜寒十四州。">
+<meta property="og:description" content="在 Windows 上使用 Docker新手入门Docker之Windows下如何使用Docker_windows docker 使用-CSDN博客  运行已下载好的镜像：   docker images：查看所有已拉取镜像 docker run --name &lt;container_name&gt; -d &lt;image&gt;:&lt;tag&gt;：在后台运行镜像，且将此容器命名为c">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-29T14:48:39.000Z">
+<meta property="article:modified_time" content="2026-01-29T14:49:41.375Z">
 <meta property="article:author" content="Zihao Hu">
+<meta property="article:tag" content="软件使用">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://321hu.github.io/zale/archives/2026/">
+<link rel="canonical" href="https://321hu.github.io/zale/2026/01/29/Docker-Windows-%E4%B8%8A%E7%9A%84%E4%BD%BF%E7%94%A8/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2026/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://321hu.github.io/zale/2026/01/29/Docker-Windows-%E4%B8%8A%E7%9A%84%E4%BD%BF%E7%94%A8/","path":"2026/01/29/Docker-Windows-上的使用/","title":"Docker - Windows 上的使用"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | Zale' blog</title>
+<title>Docker - Windows 上的使用 | Zale' blog</title>
   
 
 
@@ -87,7 +90,7 @@
 
     <a href="/zale/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Zale' blog</h1>
+      <p class="site-title">Zale' blog</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -113,7 +116,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -126,6 +129,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8-Windows-%E4%B8%8A%E4%BD%BF%E7%94%A8-Docker"><span class="nav-number">1.</span> <span class="nav-text">在 Windows 上使用 Docker</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -175,109 +179,153 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 4 篇日志。 继续努力。</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://321hu.github.io/zale/2026/01/29/Docker-Windows-%E4%B8%8A%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/zale/images/winter.jpg">
+      <meta itemprop="name" content="Zihao Hu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zale' blog">
+      <meta itemprop="description" content="满堂花醉三千客，一剑霜寒十四州。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Docker - Windows 上的使用 | Zale' blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker - Windows 上的使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2026<span class="collection-year-count">4</span></span>
+
+      <time title="创建时间：2026-01-29 22:48:39 / 修改时间：22:49:41" itemprop="dateCreated datePublished" datetime="2026-01-29T22:48:39+08:00">2026-01-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/zale/categories/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">软件使用</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="在-Windows-上使用-Docker"><a href="#在-Windows-上使用-Docker" class="headerlink" title="在 Windows 上使用 Docker"></a>在 Windows 上使用 Docker</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/fanhuaIIIIII/article/details/108626454">新手入门Docker之Windows下如何使用Docker_windows docker 使用-CSDN博客</a></p>
+<ol>
+<li>运行已下载好的镜像：</li>
+</ol>
+<ul>
+<li><code>docker images</code>：查看所有已拉取镜像</li>
+<li><code>docker run --name &lt;container_name&gt; -d &lt;image&gt;:&lt;tag&gt;</code>：在后台运行镜像，且将此容器命名为container_name</li>
+</ul>
+<ol start="2">
+<li>运行具体容器</li>
+</ol>
+<ul>
+<li><code>docker ps -a</code>：查看所有容器</li>
+<li><code>docker start ID</code> 或 <code>docker start &lt;container_name&gt;</code>：启动具体容器</li>
+<li><code>docker exec -it [容器ID或名称] /bin/bash</code>：进入容器终端<ul>
+<li><code>exit</code> 退出容器终端</li>
+<li><code>docker stop [容器ID或名称]</code>：关闭容器</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li>删除某个容器</li>
+</ol>
+<ul>
+<li><code>docker rm [容器ID或名称]</code></li>
+</ul>
+<ol start="4">
+<li>在创建容器时，使容器某路径与 Windows 文件夹挂载</li>
+</ol>
+<ul>
+<li><code>docker run -it --name &lt;container_name&gt; -v d/LibSoftware/:/root/MyFolder &lt;image&gt;:&lt;tag&gt;</code><ul>
+<li><code>-it</code> 命令使得创建之后直接在终端打开</li>
+<li><code>--name &lt;&gt;</code> 可以自定义容器名称</li>
+<li><code>-v &lt;Windows_path&gt;:&lt;Docker_path&gt;</code> 挂载</li>
+</ul>
+</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2026-01-29T22:48:39+08:00"
-              content="2026-01-29">
-          01-29
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/zale/2026/01/29/Docker-Windows-%E4%B8%8A%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="url">
-            <span itemprop="name">Docker - Windows 上的使用</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          
 
-      
-    </header>
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Zihao Hu
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://321hu.github.io/zale/2026/01/29/Docker-Windows-%E4%B8%8A%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Docker - Windows 上的使用">https://321hu.github.io/zale/2026/01/29/Docker-Windows-上的使用/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/zale/tags/%E8%BD%AF%E4%BB%B6%E4%BD%BF%E7%94%A8/" rel="tag"># 软件使用</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/zale/2026/01/29/Docker-Linux-%E4%B8%8A%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="prev" title="Docker - Linux 上的使用">
+                  <i class="fa fa-angle-left"></i> Docker - Linux 上的使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2026-01-29T22:44:54+08:00"
-              content="2026-01-29">
-          01-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/zale/2026/01/29/Docker-Linux-%E4%B8%8A%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="url">
-            <span itemprop="name">Docker - Linux 上的使用</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2026-01-29T17:34:02+08:00"
-              content="2026-01-29">
-          01-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/zale/2026/01/29/VSCode-Markdown-%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8/" itemprop="url">
-            <span itemprop="name">VSCode - Markdown 自动补全</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2026-01-27T15:57:40+08:00"
-              content="2026-01-27">
-          01-27
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/zale/2026/01/27/hello-world/" itemprop="url">
-            <span itemprop="name">Hello World</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
 
 </div>
   </main>
