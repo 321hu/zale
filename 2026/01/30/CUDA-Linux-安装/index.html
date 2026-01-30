@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/zale/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/zale/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/zale/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/zale/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/zale/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"321hu.github.io","root":"/zale/","images":"/zale/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/zale/js/config.js" defer></script>
+
+    <meta name="description" content="Linux 安装 CUDA。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CUDA - Linux 安装">
+<meta property="og:url" content="https://321hu.github.io/zale/2026/01/30/CUDA-Linux-%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:site_name" content="Zale&#39; blog">
+<meta property="og:description" content="Linux 安装 CUDA。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-30T02:56:27.000Z">
+<meta property="article:modified_time" content="2026-01-30T03:31:03.007Z">
+<meta property="article:author" content="Zihao Hu">
+<meta property="article:tag" content="工作环境配置">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://321hu.github.io/zale/2026/01/30/CUDA-Linux-%E5%AE%89%E8%A3%85/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://321hu.github.io/zale/2026/01/30/CUDA-Linux-%E5%AE%89%E8%A3%85/","path":"2026/01/30/CUDA-Linux-安装/","title":"CUDA - Linux 安装"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CUDA - Linux 安装 | Zale' blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/zale/js/utils.js" defer></script><script src="/zale/js/motion.js" defer></script><script src="/zale/js/sidebar.js" defer></script><script src="/zale/js/next-boot.js" defer></script>
+
+  
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"forest","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/zale/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/zale/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/zale/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Zale' blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/zale/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/zale/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/zale/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/zale/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-%E4%B8%8A-CUDA-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">Linux 上 CUDA 的安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-%E4%B8%8A-cuDNN-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">Linux 上 cuDNN 的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-number">2.1.</span> <span class="nav-text">注意</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9-cuDNN-%E4%B8%BA%E6%96%B0%E5%AE%89%E8%A3%85%E7%9A%84%E7%89%88%E6%9C%AC"><span class="nav-number">2.1.1.</span> <span class="nav-text">修改 cuDNN 为新安装的版本</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zihao Hu"
+      src="/zale/images/winter.jpg">
+  <p class="site-author-name" itemprop="name">Zihao Hu</p>
+  <div class="site-description" itemprop="description">满堂花醉三千客，一剑霜寒十四州。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/zale/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/zale/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/zale/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="mailto:zihao_hu1@163.com" title="E-Mail → mailto:zihao_hu1@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://321hu.github.io/zale/2026/01/30/CUDA-Linux-%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/zale/images/winter.jpg">
+      <meta itemprop="name" content="Zihao Hu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zale' blog">
+      <meta itemprop="description" content="满堂花醉三千客，一剑霜寒十四州。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="CUDA - Linux 安装 | Zale' blog">
+      <meta itemprop="description" content="Linux 安装 CUDA。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CUDA - Linux 安装
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-01-30 10:56:27 / 修改时间：11:31:03" itemprop="dateCreated datePublished" datetime="2026-01-30T10:56:27+08:00">2026-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/zale/categories/%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">工作环境配置</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">Linux 安装 CUDA。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Linux-上-CUDA-的安装"><a href="#Linux-上-CUDA-的安装" class="headerlink" title="Linux 上 CUDA 的安装"></a>Linux 上 CUDA 的安装</h1><p>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u013602059/article/details/121225915#">Linux服务器非root用户下安装CUDA11.1和cudnn到指定目录_cudnn目录_BUAA～冬之恋的博客-CSDN博客</a>。</p>
+<ul>
+<li><p>查看机器型号确定安装版本</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">uname</span> <span class="token parameter variable">-a</span> 
+lsb_release <span class="token parameter variable">-a</span></code></pre>
+</li>
+<li><p>创建下载目录：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> ~/cuda-11.6
+<span class="token function">mkdir</span> ~/cuda-11.6/my_lib
+<span class="token function">mkdir</span> ~/cuda-11.6/my_install</code></pre>
+</li>
+<li><p>根据Linux系统的版本，去<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-toolkit-archive">CUDA官网</a>选择下载对应的的 <code>CUDA</code>：</p>
+<p>假设我们期望安装 11.6 版本的 <code>CUDA</code>，则我们选择 <code>Linux - x86_64 - Ubuntu - 18.04 - runfile(local)</code> 进行下载，并将下载好的 <code>.run</code> 文件保存在 <code>~/cuda-11.6/my_install/</code> 路径中，然后输入如下命令：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ~/cuda-11.6/my_install
+<span class="token function">bash</span> cuda_11.6.2_510.47.03_linux.run</code></pre>
+</li>
+<li><p>等待一段时间，会有安装提示窗口出现，输入 <code>accept</code>。注意，此安装提示窗口会比较大，最好最大化终端窗口，使其占据全屏。</p>
+</li>
+<li><p>选择 <code>accept</code> 后，更改安装选项：</p>
+<p><code>X</code> 代表选中，第一项是显卡驱动，这里我只安装 <code>CUDA Toolkit</code>和 <code>CUDA Samples</code>，一般不搞 <code>CUDA</code> 编程，仅用来跑深度学习就够了</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">CUDA Installer                                                          
+ - <span class="token punctuation">[</span> <span class="token punctuation">]</span> Driver                                                            
+      <span class="token punctuation">[</span> <span class="token punctuation">]</span> <span class="token number">455.32</span>.00                                                       
+ + <span class="token punctuation">[</span>X<span class="token punctuation">]</span> CUDA Toolkit <span class="token number">11</span>.*                                                 
+   <span class="token punctuation">[</span>X<span class="token punctuation">]</span> CUDA Samples <span class="token number">11</span>.*                                                
+   <span class="token punctuation">[</span> <span class="token punctuation">]</span> CUDA Demo Suite <span class="token number">11</span>.*                                               
+   <span class="token punctuation">[</span> <span class="token punctuation">]</span> CUDA Documentation <span class="token number">11</span>.*                                          
+   Options                                                               
+   Install
+<span class="token comment">### 这一步中，不同版本的CUDA可能界面会有所不同，请谨慎甄别.</span></code></pre>
+
+<ul>
+<li>选中 <code>Options</code><ul>
+<li>先更改 <code>Toolkit Options</code> ，将 <code>/usr</code> 这种目录的去掉（全部去掉）</li>
+<li>另外进入 <code>Change Toolkit Install Path</code> 设置cuda安装到自己具有写入权限的路径，我这里是 <code>/data/huzihao/cuda-11.6/</code>（这里最好使用绝对路径）</li>
+</ul>
+</li>
+</ul>
+<pre class="language-bash" data-language="bash"><code class="language-bash">Change Toolkit Install Path
+/data/huzihao/cuda-11.6/
+
+Library <span class="token function">install</span> path <span class="token punctuation">(</span>Blank <span class="token keyword">for</span> system default<span class="token punctuation">)</span>
+/data/huzihao/cuda-11.6/my_lib</code></pre>
+</li>
+<li><p>安装完毕后，添加环境变量 <code>vim ~/.bashrc</code></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"/data/huzihao/cuda-11.6/bin:<span class="token environment constant">$PATH</span>"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token string">"/data/huzihao/cuda-11.6/lib64:/data/huzihao/cuda-11.6/my_lib/lib64:<span class="token variable">$LD_LIBRARY_PATH</span>"</span></code></pre>
+
+<p>然后 <code>source ~/.bashrc</code></p>
+</li>
+</ul>
+<ul>
+<li>测试 <code>CUDA</code>：<code>nvcc -V</code></li>
+</ul>
+<h1 id="Linux-上-cuDNN-的安装"><a href="#Linux-上-cuDNN-的安装" class="headerlink" title="Linux 上 cuDNN 的安装"></a>Linux 上 cuDNN 的安装</h1><p>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/my__blog/article/details/125723725">linux 安装 CUDNN_linux安装cudnn-CSDN博客</a></p>
+<p>官网下载相应版本，要与 <code>CUDA</code> 版本兼容：<a target="_blank" rel="noopener" href="https://developer.nvidia.com/rdp/cudnn-archive#a-collapse804-111">cuDNN Archive | NVIDIA Developer</a></p>
+<p>假设我已经安装好 <code>cuda-11.6</code>，现在我希望安装 <code>cuDNN v8.5.0 (August 8th, 2022), for CUDA 11.x</code>，在官网中选择这一栏，再选择 <code>Local Installer for Linux x86_64 (Tar)</code> 下载到本地即可</p>
+<ul>
+<li><p>下载路径：<code>~/cudnn/</code></p>
+</li>
+<li><p>进行安装</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ~/cudnn
+<span class="token function">tar</span> <span class="token parameter variable">-xf</span> cudnn-linux-x86_64-8.5.0.96_cuda11-archive.tar.xz <span class="token comment"># 需要一定时间</span>
+<span class="token builtin class-name">cd</span> cudnn-linux-x86_64-8.5.0.96_cuda11-archive
+
+<span class="token function">cp</span> ./include/* <span class="token punctuation">..</span>/cuda-11.6/include
+<span class="token function">cp</span> ./lib/libcudnn* <span class="token punctuation">..</span>/cuda-11.6/lib64
+
+<span class="token function">chmod</span> a+r <span class="token punctuation">..</span>/cuda-11.6/include/cudnn.h <span class="token punctuation">..</span>/cuda-11.6/lib64/libcudnn*</code></pre></li>
+</ul>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>安装结束后，我们会发现较旧版本的 cuDNN 目录与较新版本的 cuDNN 目录不一致</p>
+<p>旧版本：</p>
+<pre class="language-none"><code class="language-none">cuda
+----include
+---------cudnn.h
+----lib64
+--------...</code></pre>
+
+<p>新版本：</p>
+<pre class="language-none"><code class="language-none">cuda
+----include
+---------cudnn.h
+---------cudnn_*.h
+----lib64
+--------...</code></pre>
+
+<h3 id="修改-cuDNN-为新安装的版本"><a href="#修改-cuDNN-为新安装的版本" class="headerlink" title="修改 cuDNN 为新安装的版本"></a>修改 cuDNN 为新安装的版本</h3><ul>
+<li><p>找到对应的 cuDNN 文件夹</p>
+</li>
+<li><p>将 cuDNN 的文件复制到 CUDA 文件夹中：</p>
+  <pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">cp</span> ./include/* /usr/local/cuda-10.2/include
+<span class="token function">sudo</span> <span class="token function">cp</span> ./lib/libcudnn* /usr/local/cuda-10.2/lib64
+<span class="token function">sudo</span> <span class="token function">chmod</span> a+r /usr/local/cuda-10.2/include/cudnn.h /usr/local/cuda-10.2/lib64/libcudnn*</code></pre>
+
+<ul>
+<li>注意：低版本的 cuDNN 和高版本的 cuDNN 的文件结构不完全相同，需要仔细甄别</li>
+</ul>
+</li>
+<li><p>需要执行一下 <code>sudo ldconfig</code>，以更新依赖。</p>
+<ul>
+<li><p>若出现错误如下：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash">/sbin/ldconfig.real: /data/lyq/cuda-10.2/targets/x86_64-linux/lib/libcudnn.so.7 is not a symbolic <span class="token function">link</span></code></pre>
+
+<p>则进行如下操作：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /data/lyq/cuda-10.2/lib64
+<span class="token function">sudo</span> <span class="token function">rm</span> libcudnn.so
+<span class="token function">sudo</span> <span class="token function">rm</span> libcudnn.so.7
+<span class="token function">sudo</span> <span class="token function">ln</span> libcudnn.so.7.6.5 libcudnn.so.7
+<span class="token function">sudo</span> <span class="token function">ln</span> libcudnn.so.7 libcudnn.so
+<span class="token function">sudo</span> ldconfig <span class="token comment"># No news is good news. :)</span></code></pre>
+
+<blockquote>
+<p>这里的<code>libcudnn.so.7.6.5</code>不一定是7.6.5版本的，在操作前请检查<code>.../lib64/</code>下对应<code>libcudnn</code>的具体版本：通过<code>find . -name &quot;*cudnn*&quot;</code>可检查。</p>
+</blockquote>
+</li>
+<li><p>若没有这个CUDA对应的<code>.config</code>，则<code>cd /etc/ld.so.conf.d</code>，按如下方式进行创建：</p>
+<p>假设CUDA目录为<code>/data/usr/cuda-10.2</code></p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">touch</span> cuda-10-2.conf
+<span class="token function">sudo</span> <span class="token function">vim</span> cuda-10-2.conf
+<span class="token comment"># 在上述文件中输入/data/usr/cuda-10.2/targets/x86_64-linux/lib</span>
+<span class="token comment"># 保存、退出即可</span></code></pre></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Zihao Hu
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://321hu.github.io/zale/2026/01/30/CUDA-Linux-%E5%AE%89%E8%A3%85/" title="CUDA - Linux 安装">https://321hu.github.io/zale/2026/01/30/CUDA-Linux-安装/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/zale/tags/%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="tag"># 工作环境配置</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/zale/2026/01/30/CUDA-Windows-%E5%AE%89%E8%A3%85/" rel="prev" title="CUDA - Windows 安装">
+                  <i class="fa fa-angle-left"></i> CUDA - Windows 安装
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/zale/2026/01/30/%E5%8F%8C%E7%B3%BB%E7%BB%9F-Ubuntu-%E5%AE%89%E8%A3%85/" rel="next" title="双系统 - Ubuntu 安装">
+                  双系统 - Ubuntu 安装 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Zihao Hu</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
